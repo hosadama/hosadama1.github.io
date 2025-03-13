@@ -12,13 +12,18 @@
         function showAlert2() {
             alert('Button 2 clicked!');
         }
+        function playMP3() {
+            var audioPlayer = document.getElementById("audioPlayer");
+            audioPlayer.src = "http://192.168.4.190:5000/play_mp3";  // Flask 서버의 MP3 URL
+            audioPlayer.play();
+    }
     </script>
 </head>
 <body>
     <h1>Welcome to My Website</h1>
     <p>This is a demonstration of GitHub Pages.</p>
     
-    <button onclick="showAlert1()">Button 1</button>
+    <button onclick="playMP3()">버튼 1: MP3 재생</button>
     <button onclick="showAlert2()">Button 2</button>
 </body>
 </html>
