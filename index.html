@@ -10,12 +10,26 @@
     <button id="playButton">버튼1</button>
     <audio id="audioPlayer" src="s_1_C.mp3"></audio>
 
+    <h2>비디오 재생</h2>
+    <video id="videoPlayer" width="640" height="360" controls>
+        <source src="qbox_guide.mp4" type="video/mp4">
+        당신의 브라우저는 비디오 태그를 지원하지 않습니다.
+    </video>
+    <br>
+    <button id="playVideoButton">비디오 재생</button>
+    
     <script>
         const playButton = document.getElementById('playButton');
         const audioPlayer = document.getElementById('audioPlayer');
 
         playButton.addEventListener('click', () => {
             audioPlayer.play();
+        });
+
+        const playVideoButton=document.getElementById("playVideoButton");
+        const videoPlayer=document.getElementById("videoPlayer");
+        playVideoButton.addEventListener('click',0=?{
+            videoPlayer.play();
         });
     </script>
 </body>
