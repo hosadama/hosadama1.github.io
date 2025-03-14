@@ -6,6 +6,12 @@
     <title>MP3 자동 재생</title>
 </head>
 <body>
+    <h1>MP3 자동 재생</h1>
+    
+    <!-- QR 코드에서 읽은 음악 파일명을 표시하는 영역 -->
+    <h2>재생 중인 파일:</h2>
+    <p id="musicFileDisplay" style="font-size: 20px; font-weight: bold; color: blue;">없음</p>
+
     <audio id="player" autoplay>
         <source id="audioSource" src="" type="audio/mp3">
     </audio>
@@ -19,9 +25,11 @@
         document.addEventListener('DOMContentLoaded', function () {
             const audioPlayer = document.getElementById('player');
             const audioSource = document.getElementById('audioSource');
-            
+            const musicFileDisplay = document.getElementById('musicFileDisplay');
+
             const musicFile = getQueryParam('music');
             if (musicFile) {
+                musicFileDisplay.textContent = decodeURIComponent(musicFile); // 화면에 표시
                 audioSource.src = musicFile;
                 audioPlayer.load();
                 audioPlayer.play().catch(error => console.log("자동 재생 차단됨:", error));
