@@ -30,7 +30,7 @@
             const musicFile = getQueryParam('music');
             if (musicFile) {
                 musicFileDisplay.textContent = decodeURIComponent(musicFile); // 화면에 표시
-                audioSource.src = musicFile;
+                audioSource.src = 'E_10_C.mp3';
                 audioPlayer.load();
                 audioPlayer.play().catch(error => console.log("자동 재생 차단됨:", error));
             }
