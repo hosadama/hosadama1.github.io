@@ -3,52 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>오디오 및 비디오 플레이어</title>
-	
-	<style>
-        button {
-            margin: 2px; 
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-    </style>
+    <title>MP3 자동 재생</title>
 </head>
 <body>
-    <h1>오디오 및 비디오 재생 예제</h1>
-    
-    <h2>오디오 재생</h2>
-    <div id="audioButtons"></div>
-    <audio id="audioPlayer"></audio>
-
-    <h2>비디오 재생</h2>
-    <video id="videoPlayer" width="640" height="360" controls>
-        <source src="BigBuckBunny_720p30.mp4" type="video/mp4">
-        당신의 브라우저는 비디오 태그를 지원하지 않습니다.
-    </video>
-    <br>
-    <button id="playVideoButton">비디오 재생</button>
+    <audio id="player" autoplay>
+        <source id="audioSource" src="" type="audio/mp3">
+    </audio>
 
     <script>
-        const audioFiles = ['s_1_C.mp3', 's_2_C.mp3', 's_3_C.mp3', 's_4_C.mp3','s_5_C.mp3','s_6_C.mp3','S_7_C.mp3','S_8_C.mp3', 'S_9_C.mp3', 'S_10_C.mp3', 'S_11_C.mp3', 'S_12_C.mp3', 'S_13_C.mp3', 'S_14_C.mp3'];
-        const audioButtonsDiv = document.getElementById('audioButtons');
-        const audioPlayer = document.getElementById('audioPlayer');
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
 
-        // MP3 파일 목록을 기반으로 버튼 생성
-        audioFiles.forEach(file => {
-            const button = document.createElement('button');
-            button.textContent = file; // 버튼 이름을 MP3 파일 이름으로 설정
-            button.addEventListener('click', () => {
-                audioPlayer.src = file; // 선택한 파일로 오디오 소스 변경
-                audioPlayer.play(); // 오디오 재생
-            });
-            audioButtonsDiv.appendChild(button); // 버튼을 DOM에 추가
-        });
-
-        const playVideoButton = document.getElementById('playVideoButton');
-        const videoPlayer = document.getElementById('videoPlayer');
-
-        playVideoButton.addEventListener('click', () => {
-            videoPlayer.play();
+        document.addEventListener('DOMContentLoaded', function () {
+            const audioPlayer = document.getElementById('player');
+            const audioSource = document.getElementById('audioSource');
+            
+            const musicFile = getQueryParam('music');
+            if (musicFile) {
+                audioSource.src = musicFile;
+                audioPlayer.load();
+                audioPlayer.play().catch(error => console.log("자동 재생 차단됨:", error));
+            }
         });
     </script>
 </body>
